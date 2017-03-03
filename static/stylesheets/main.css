@@ -1,0 +1,204 @@
+body{
+	background: #333333;
+	font-family: sans;
+}
+
+div#container{
+	width: 800px;
+	height: 800px;
+	margin: 100px auto 10px auto;
+	background: #FFFFFF;
+	border-radius: 10px;
+	box-shadow: 1px 1px 5px #000000;
+}
+
+div#container img#logo{
+	position: relative;
+	top: -36px;
+	width: 128px;
+	margin: 0px 0px 0px 50px;
+}
+
+div#container img#loader{
+	position: relative;
+	left: 350px;
+}
+
+div#container p.action{
+	display: block;
+	text-align: center;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px #000000;
+}
+
+div#container div#title{
+	float: right;
+	font-family: sans;
+	font-size: 32px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #000000;
+	margin: 20px 70px 10px 0px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+div#container div#uptime{
+	display: block;
+	text-align: right;
+	font-family: sans;
+	margin: -50px 70px 50px 0px;
+}
+
+div#container div#tempgauge{
+	float: left;
+	margin: -50px 0px 25px 35px;
+	height: 290px;
+	width: 360px;
+}
+
+div#container div#voltgauge{
+	float: left;
+	margin: -25px 0px 25px 0px;
+	height: 125px;
+	width: 180px;
+}
+
+div#container div#cpufreq{
+	float: left;
+	margin: -25px 0px 25px 0px;
+	height: 125px;
+	width: 180px;
+}
+
+div#container div#cpugauge{
+	float: left;
+	margin: -25px 0px 25px 0px;
+	height: 125px;
+	width: 180px;
+}
+
+div#container div#ramgauge{
+	float: left;
+	margin: -25px 0px 25px 0px;
+	height: 125px;
+	width: 180px;
+}
+
+div#container div#diskgauge{
+	float: left;
+	clear:left;
+	margin: 20px 0px 25px 35px;
+	height: 290px;
+	width: 360px;
+}
+
+
+table 
+{
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 	
+    float: left;
+	clear:right;
+	margin: 20px 0px 25px 0px;
+	width: 360px; 
+}
+
+.zebra td, .zebra th 
+{
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;    
+}
+
+.tr1 
+{
+	height: 10px;
+    background: #f5f5f5;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+.tr2
+{
+	height: 10px;
+    background: #ffefd5;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+.zebra th 
+{
+    text-align: left;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image:    -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image:     -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image:      -o-linear-gradient(top, #f5f5f5, #eee); 
+    background-image:         linear-gradient(top, #f5f5f5, #eee);
+}
+.zebra caption
+{
+    color: #999999;
+    font-stretch: wider;
+    text-anchor: middle;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 28px;
+    line-height: normal;
+    font-family: Arial;
+    fill-opacity: 1;
+"
+}
+.zebra th:first-child 
+{
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;  
+}
+
+.zebra th:last-child 
+{
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.zebra th:only-child
+{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.zebra tfoot td 
+{
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    background-color: #f1f1f1;  
+}
+
+.zebra tfoot td:first-child 
+{
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.zebra tfoot td:last-child 
+{
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+.zebra tfoot td:only-child
+{
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px
+    border-radius: 0 0 6px 6px
+}
+

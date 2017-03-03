@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Raspberry Pi Control Panel</title>
+		<link rel="stylesheet" href="/static/stylesheets/main.css">
+		<link rel="stylesheet" href="/static/stylesheets/button.css">
+		<script src="/static/javascript/raphael.2.1.0.min.js"></script>
+	    <script src="/static/javascript/justgage.1.0.1.min.js"></script>
+            <script src="/static/javascript/ajax.js"></script>
+            <script src="/static/javascript/jquery-3.1.1.min.js"></script>
+	    <script>
+	    $(document).ready(function(){
+
+	var users="{{ SYS_users|safe }}";
+    users=eval("("+users+")");
+    len=users.length;
+    htm=""
+	for (i=0;i<len;i++)
+    	htm=htm+"<tr><td>"+i+"</td><td>"+users[i]["user"]+"</td><td>"+users[i]["line"]+"</td><td>"+users[i]["time"]+"</br>"+users[i]["comment"]+"</td></tr>";
+    $("tbody").html(htm);
+});
+	     
+$(".zebar").find("caption").text("wewew");
+	    	function checkAction(action){
+				if (confirm("Are you sure want to " + action + '?'))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+	    	}
+
+			window.onload = doLoad;
+
+			function doLoad()
+			{
+                window.setInterval(refresh,10*1000);
+                window.setInterval(refresh_cpuusage,20*1000);
+			}
+			function refresh()
+			{
+var xmlhttp;
+if(window.XMLHttpRequest)
+        xmlhttp=new XMLHttpRequest();
+    else
+        xmlhttp=new ActiveXObject("Microslft.XMLHTTP");
+				var url="/refresh"
+				loadXMLDocByGet(url,function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+						resp=xmlhttp.responseText;
+						var data=eval ("(" + resp + ")");
+						cputemp=data['cputemp'];
+						cpufreq=data["cpufreq"];
+						ramused=data["ramused"];
+						diskused=data["diskused"];
+						corevolt=data["corevolt"];
+						runtime=data["runtime"];
+						t.refresh(cputemp);
+						f.refresh(cpufreq);
+						r.refresh(ramused);
+						d.refresh(diskused);
+						v.refresh(corevolt);
+						document.getElementById("runtime").innerText=runtime;
+					}
+				},xmlhttp);
+			}
+			function refresh_cpuusage()
+			{
+var xmlhttp;
+if(window.XMLHttpRequest)
+        xmlhttp=new XMLHttpRequest();
+    else
+        xmlhttp=new ActiveXObject("Microslft.XMLHTTP");
+				var url="/cpuusage";
+				loadXMLDocByGet(url,function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+						cpuusage=xmlhttp.responseText;
+						u.refresh(parseInt(cpuusage));
+						u.txtTitle.attr({"text":"CPU usage"})
+					}
+				},xmlhttp);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+				<img id="logo" src="/static/images/raspberry.png">
+				<div id="title">Raspberry Pi Control Panel</div>
+				{% if SYS_runtime %}
+					<div id="uptime"><b>Runtime:</b>&nbsp;&nbsp;<span id="runtime">{{ SYS_runtime }}</span> </div>
+				{% endif %}
+
+				{% if CPU_temp %}
+					<div id="tempgauge"></div>
+					<script>
+						var t = new JustGage({
+						    id: "tempgauge",
+						    value: "{{ CPU_temp }}",
+						    min: 0,
+						    max: 100,
+						    title: "CPU temperature",
+						    label: "°C"
+					    });
+					</script>
+				{% endif %}
+
+				{% if CORE_volt %}
+					<div id="voltgauge"></div>
+					<script>
+						var v = new JustGage({
+							id: "voltgauge",
+							value: "{{ CORE_volt }}",
+							min: 0.8,
+							max: 1.4,
+							title: "Core Volt",
+							label: "V"
+						});
+					</script>
+				{% endif %}
+
+					<div id="cpugauge"></div>
+					<script>
+						var u = new JustGage({
+							id: "cpugauge",
+							value: "0",
+							min: 0,
+							max: 100,
+							title: "CPU usage[computing...]",
+							label: "%"
+						});
+					</script>
+				{% if CPU_freq %}
+					<div id="cpufreq"></div>
+					<script>
+						var f = new JustGage({
+							id: "cpufreq",
+							value: "{{ CPU_freq }}",
+							min: 0,
+							max: 1400,
+							title: "CPU frequence",
+							label: "MHz"
+						});
+					</script>
+				{% endif %}
+				{% if RAM_total %}
+					<div id="ramgauge"></div>
+					<script>
+						var r = new JustGage({
+							id: "ramgauge",
+							value: "{{ RAM_used }}",
+							min: 0,
+							max: {{ RAM_total }},
+							title: "RAM usage",
+							label: "MB"
+						});
+					</script>
+				{% endif %}
+				{% if DISK_total %}
+					<div id="diskgauge"></div>
+					<script>
+						var d = new JustGage({
+							id: "diskgauge",
+							value: "{{ DISK_used }}",
+							min: 0,
+							max: {{ DISK_total }},
+							title: "DISK usage",
+							label: "G"
+						});
+					</script>
+				{% endif %}
+<div id="user_table">
+		<table class="zebra">
+		<caption>Who</caption>
+    <thead>
+
+    <tr>
+        <th>#</th>        
+        <th>Name</th>
+        <th>Line</th>
+        <th>Time&Comment</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+        
+
+</table></div>
+		</div>
+		
+
+	</body>
+</html>
+
+
+

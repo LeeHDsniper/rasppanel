@@ -1,0 +1,11 @@
+# -*-coding:utf-8-*-
+TXT_CONFIRM = "do you really want to"
+TXT_RUNTIME = "Runtime"
+TXT_RESTART = "Reboot"
+TXT_SHUTDOWN = "Shutdown"
+TXT_TEMPERATURE = "Temperature"
+TXT_VOLTAGE = "CoreVolt"
+TXT_FREQUENCE = "CPUfrequence"
+TXT_USAGE = "CPU Usage[computing...]"
+TXT_RAMUSAGE="RAM Usage"
+TXT_DISKUSAGE="DISK Usage"
